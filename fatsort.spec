@@ -8,7 +8,7 @@ Version:	1.3.365
 Release:	0.1
 License:	GPL v2
 Group:		Applications
-Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
+Source0:	http://downloads.sourceforge.net/fatsort/%{name}-%{version}.tar.gz
 # Source0-md5:	f1232f40eba6ee9362acd9f0d5209dcf
 URL:		http://fatsort.sourceforge.net
 %{?with_tests:BuildRequires:	bbe}
@@ -17,14 +17,19 @@ BuildRequires:	help2man
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-FATSort is a C utility that sorts FAT12, FAT16 and FAT32 partitions. It even can handle long file name entries. It was developed because I wanted to sort my MP3 files on my MP3 hardware player. Unfortunetly, there was no utility out there so far, so I had to write it myself. FATSort reads the boot sector and sorts the directory structure recursively.
+FATSort is a C utility that sorts FAT12, FAT16 and FAT32 partitions.
+It even can handle long file name entries. It was developed because I
+wanted to sort my MP3 files on my MP3 hardware player. Unfortunetly,
+there was no utility out there so far, so I had to write it myself.
+FATSort reads the boot sector and sorts the directory structure
+recursively.
 
 %prep
 %setup -q
 
 %build
 %{__make} \
-	CC=%{__cc} \
+	CC="%{__cc}" \
 	CFLAGS="%{rpmcflags}" \
 	LDFLAGS="%{rpmldflags}"
 
