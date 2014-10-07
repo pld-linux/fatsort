@@ -1,3 +1,5 @@
+# TODO:
+#	- tests requires mounting filesystem images
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
@@ -5,7 +7,7 @@
 Summary:	Utility that sorts FAT12, FAT16 and FAT32 partition
 Name:		fatsort
 Version:	1.3.365
-Release:	0.1
+Release:	1
 License:	GPL v2
 Group:		Applications
 Source0:	http://downloads.sourceforge.net/fatsort/%{name}-%{version}.tar.gz
