@@ -2,20 +2,23 @@
 #	- tests requires mounting filesystem images
 #
 # Conditional build:
-%bcond_with	tests		# build with tests
+%bcond_with	tests	# functional tests
 #
 Summary:	Utility that sorts FAT12, FAT16 and FAT32 partition
+Summary(pl.UTF-8):	Narzędzie do sortowania partycji FAT12, FAT16 i FAT32
 Name:		fatsort
-Version:	1.3.365
+Version:	1.6.5.640
 Release:	1
 License:	GPL v2
 Group:		Applications
-Source0:	http://downloads.sourceforge.net/fatsort/%{name}-%{version}.tar.gz
-# Source0-md5:	f1232f40eba6ee9362acd9f0d5209dcf
-URL:		http://fatsort.sourceforge.net
+Source0:	https://downloads.sourceforge.net/fatsort/%{name}-%{version}.tar.xz
+# Source0-md5:	5c545634fe15e6cf44efc847b631718e
+URL:		https://fatsort.sourceforge.io/
 %{?with_tests:BuildRequires:	bbe}
 %{?with_tests:BuildRequires:	dosfstools}
 BuildRequires:	help2man
+BuildRequires:	tar >= 1:1.22
+BuildRequires:	xz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -25,6 +28,13 @@ wanted to sort my MP3 files on my MP3 hardware player. Unfortunetly,
 there was no utility out there so far, so I had to write it myself.
 FATSort reads the boot sector and sorts the directory structure
 recursively.
+
+%description -l pl.UTF-8
+FATSort to narzędzie w C do sortowania partycji FAT12, FAT16 i FAT32.
+Potrafi obsłużyć wpisy długich nazw plików. Powstał z potrzeby
+posortowania plików MP3 dla sprzętowego odtwarzacza, kiedy nie było
+jeszcze takiego narzędzia. FATSort czyta sektor rozruchowy i sortuje
+rekurencyjnie strukturę katalogów.
 
 %prep
 %setup -q
@@ -50,6 +60,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc CHANGES README
+%doc CHANGES.md
 %attr(755,root,root) %{_sbindir}/fatsort
 %{_mandir}/man1/fatsort.1*
